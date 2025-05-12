@@ -44,10 +44,10 @@ apply_bw = st.checkbox("Apply black & white filter")
 apply_contrast = st.checkbox("Boost contrast")
 apply_blur = st.checkbox("Apply soft blur")
 apply_sepia = st.checkbox("Apply sepia tone")
-repeat_all = st.checkbox("Repeat full animation once (GIF & MP4)", value=False)
 
 # Removed duplicated controls below
 st.subheader("Export Options")
+repeat_all = st.checkbox("Repeat full animation once (GIF & MP4)", value=False)
 loop_forever = st.checkbox("Loop forever (GIF only)", value=False)
 
 LOGO_PATH = "logo.png"
