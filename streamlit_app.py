@@ -47,10 +47,11 @@ apply_sepia = st.checkbox("Apply sepia tone")
 
 # Removed duplicated controls below
 st.subheader("Export Options")
-fade_last = st.checkbox("Fade out at end of export (MP4 only)")
-fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1, key="fade_duration_slider")
+
 repeat_all = st.checkbox("Repeat full animation once (GIF & MP4)", value=False)
 loop_forever = st.checkbox("Loop forever (GIF only)", value=False)
+fade_last = st.checkbox("Fade out at end of export (MP4 only)")
+fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1, key="fade_duration_slider")
 
 LOGO_PATH = "logo.png"
 
