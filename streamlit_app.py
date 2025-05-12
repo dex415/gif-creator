@@ -34,16 +34,25 @@ else:
         duration = 1.5
         output_format = "GIF"
     elif preset == "MP4 (Short Reel)":
-        duration = 1.5
-        output_format = "MP4 (video)"
-        add_watermark = True
+    duration = 1.5
+    output_format = "MP4 (video)"
+    add_watermark = True
     elif preset == "MP4 (Longer Reel)":
         duration = 2.2
         output_format = "MP4 (video)"
 
 
 st.subheader("Filter Options")
-add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=True)
+default_watermark = True if preset == "MP4 (Short Reel)" else True
+add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=default_watermark)
+if add_watermark:
+    if preset == "Custom":
+        watermark_size = st.slider("Watermark size (% of image width)", 5, 30, 15)
+        watermark_margin = st.slider("Watermark margin (px)", 0, 50, 4)
+    else:
+        watermark_size = 15
+        watermark_margin = 4
+
 apply_bw = st.checkbox("Apply black & white filter")
 apply_contrast = st.checkbox("Boost contrast")
 apply_blur = st.checkbox("Apply soft blur")
