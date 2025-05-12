@@ -45,6 +45,7 @@ else:
 st.subheader("Filter Options")
 default_watermark = True if preset in ["MP4 (Short Reel)", "MP4 (Longer Reel)", "GIF (Short Reel)"] else False
 add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=default_watermark)
+st.caption(f"Watermark checkbox: {add_watermark} | Preset: {preset} | LOGO_PATH exists: {os.path.exists(LOGO_PATH)}")
     st.write(f"Watermark enabled: {add_watermark}, Preset: {preset}, Watermark path exists: {os.path.exists(LOGO_PATH)}")
 if add_watermark:
     if preset == "Custom":
@@ -67,7 +68,9 @@ loop_forever = st.checkbox("Loop forever (GIF only)", value=False)
 fade_last = st.checkbox("Fade out at end of export (MP4 only)")
 fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1, key="fade_duration_slider")
 
+# Define early so we can check its existence
 LOGO_PATH = "logo.png"
+
 
 if uploaded_files:
     file_dict = {}
