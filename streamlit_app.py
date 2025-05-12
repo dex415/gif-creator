@@ -144,14 +144,12 @@ if uploaded_files:
                         w_percent = logo_width / float(logo.size[0])
                         logo_height = int(float(logo.size[1]) * w_percent)
                         logo = logo.resize((logo_width, logo_height), Image.LANCZOS)
-                        img_cropped = img_cropped.convert("RGBA")
-                        st.markdown("✅ Watermark block executed")
-                        st.image(logo, caption="Watermark preview", use_container_width=True)
-                        st.image(img_cropped, caption="Image after watermark", use_container_width=True)
+                        watermarked = Image.new("RGBA", img_cropped.size, (255, 255, 255, 255))
+                        watermarked.paste(img_cropped.convert("RGBA"), (0, 0))
                         pos_x = img_cropped.width - logo_width - watermark_margin
                         pos_y = img_cropped.height - logo_height - (watermark_margin // 2)
-                        img_cropped.paste(logo, (pos_x, pos_y), logo)
-                        img_cropped = img_cropped.convert("RGB")
+                        watermarked.paste(logo, (pos_x, pos_y), logo)
+                        img_cropped = watermarked.convert("RGB")
                     except Exception as e:
                         st.error(f"Watermark failed to apply: {e}")
 
