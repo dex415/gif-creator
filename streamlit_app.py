@@ -168,7 +168,7 @@ if uploaded_files:
             else:
                 output_path = os.path.join(tmpdir, f"twnty_two_hat_{timestamp}.mp4")
                 import numpy as np
-                images_np = [np.array(img) for img in images * 2] if repeat_all else [np.array(img) for img in images]
+                images_np = [np.array(img.convert("RGB")) for img in images * 2] if repeat_all else [np.array(img.convert("RGB")) for img in images]
                 
                 from moviepy.video.fx.all import fadeout
                 clip = ImageSequenceClip(images_np, fps=1 / duration)
