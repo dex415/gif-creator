@@ -45,6 +45,7 @@ else:
 st.subheader("Filter Options")
 default_watermark = True if preset in ["MP4 (Short Reel)", "MP4 (Longer Reel)", "GIF (Short Reel)"] else False
 add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=default_watermark)
+    st.write(f"Watermark enabled: {add_watermark}, Preset: {preset}, Watermark path exists: {os.path.exists(LOGO_PATH)}")
 if add_watermark:
     if preset == "Custom":
         watermark_size = st.slider("Watermark size (% of image width)", 5, 30, 15)
