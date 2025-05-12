@@ -44,8 +44,8 @@ apply_bw = st.checkbox("Apply black & white filter")
 apply_contrast = st.checkbox("Boost contrast")
 apply_blur = st.checkbox("Apply soft blur")
 apply_sepia = st.checkbox("Apply sepia tone")
-repeat_all = st.checkbox("Loop animation once in export", value=False)
-fade_last = st.checkbox("Fade out at end of export")
+repeat_all = st.checkbox("Repeat full animation in export", value=False)
+fade_last = st.checkbox("Fade out at end of export (MP4 only)")
 fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1)
 st.subheader("Export Options")
 repeat_all = st.checkbox("Loop animation once in export", value=False)
@@ -137,14 +137,14 @@ if uploaded_files:
             if output_format == "GIF":
                 output_path = os.path.join(tmpdir, f"twnty_two_hat_{timestamp}.gif")
                 loop_setting = 0 if loop_forever else 1
-                images[0].save(output_path, save_all=True, append_images=images[1:], duration=int(duration * 1000), loop=loop_setting)
+                images_to_export = images * 2 if repeat_all else images
+                images_to_export[0].save(output_path, save_all=True, append_images=images_to_export[1:], duration=int(duration * 1000), loop=loop_setting)
                 mime = "image/gif"
             else:
                 output_path = os.path.join(tmpdir, f"twnty_two_hat_{timestamp}.mp4")
                 import numpy as np
-                images_np = [np.array(img) for img in images]
-                if repeat_all:
-                    images_np = images_np
+                images_np = [np.array(img) for img in images * 2] if repeat_all else [np.array(img) for img in images]
+                
                 from moviepy.video.fx.all import fadeout
                                 if fade_last:
                     clip = fadeout(clip, duration=fade_duration)
