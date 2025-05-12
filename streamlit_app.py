@@ -43,7 +43,7 @@ else:
 
 
 st.subheader("Filter Options")
-default_watermark = True if preset == "MP4 (Short Reel)" else True
+default_watermark = True if preset in ["MP4 (Short Reel)", "MP4 (Longer Reel)", "GIF (Short Reel)"] else False
 add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=default_watermark)
 if add_watermark:
     if preset == "Custom":
