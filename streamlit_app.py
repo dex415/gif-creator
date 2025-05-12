@@ -146,10 +146,9 @@ if uploaded_files:
                 images_np = [np.array(img) for img in images * 2] if repeat_all else [np.array(img) for img in images]
                 
                 from moviepy.video.fx.all import fadeout
-                                if fade_last:
+                clip = ImageSequenceClip(images_np, fps=1 / duration)
+                if fade_last:
                     clip = fadeout(clip, duration=fade_duration)
-                else:
-                    clip = ImageSequenceClip(images_np, fps=1 / duration)
                 clip = ImageSequenceClip(images_np, fps=1 / duration)
                 clip.write_videofile(output_path, codec="libx264", audio=False, verbose=False, logger=None)
                 mime = "video/mp4"
