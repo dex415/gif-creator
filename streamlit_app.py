@@ -9,9 +9,9 @@ from datetime import datetime
 from streamlit_sortables import sort_items
 
 # Define early so it is usable
-LOGO_PATH = "logo.png"
+LOGO_PATH = os.path.join(os.path.dirname(__file__), "logo.png")
 
-st.set_page_config(page_title="🧢 TWNTY-TWO GIF Creator", layout="centered", page_icon="https://twnty-two-assets.s3.amazonaws.com/twnty-two-logo-header.png")
+st.set_page_config(page_title="🧢 TWNTY-TWO GIF Creator", layout="centered", page_icon="logo.png")
 
 st.markdown("""
     <style>
