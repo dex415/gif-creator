@@ -137,17 +137,20 @@ if uploaded_files:
                     img_cropped = sepia
 
                 if add_watermark and os.path.exists(LOGO_PATH):
-                    logo = Image.open(LOGO_PATH).convert("RGBA")
-                    base_width = img_cropped.width
-                    logo_width = int(base_width * (watermark_size / 100))
-                    w_percent = logo_width / float(logo.size[0])
-                    logo_height = int(float(logo.size[1]) * w_percent)
-                    logo = logo.resize((logo_width, logo_height), Image.LANCZOS)
-                    img_cropped = img_cropped.convert("RGBA")
-                    pos_x = img_cropped.width - logo_width - watermark_margin
-                    pos_y = img_cropped.height - logo_height - (watermark_margin // 2)
-                    img_cropped.paste(logo, (pos_x, pos_y), logo)
-                    img_cropped = img_cropped.convert("RGB")
+                    try:
+                        logo = Image.open(LOGO_PATH).convert("RGBA")
+                        base_width = img_cropped.width
+                        logo_width = int(base_width * (watermark_size / 100))
+                        w_percent = logo_width / float(logo.size[0])
+                        logo_height = int(float(logo.size[1]) * w_percent)
+                        logo = logo.resize((logo_width, logo_height), Image.LANCZOS)
+                        img_cropped = img_cropped.convert("RGBA")
+                        pos_x = img_cropped.width - logo_width - watermark_margin
+                        pos_y = img_cropped.height - logo_height - (watermark_margin // 2)
+                        img_cropped.paste(logo, (pos_x, pos_y), logo)
+                        img_cropped = img_cropped.convert("RGB")
+                    except Exception as e:
+                        st.error(f"Watermark failed to apply: {e}")
 
                 images.append(img_cropped)
 
