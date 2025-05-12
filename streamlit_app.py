@@ -150,8 +150,8 @@ if uploaded_files:
                         pos_y = img_cropped.height - logo_height - (watermark_margin // 2)
                         watermarked.paste(logo, (pos_x, pos_y), logo)
                         img_cropped = watermarked.convert("RGB")
-                    except Exception as e:
-                        st.error(f"Watermark failed to apply: {e}")
+                    except Exception:
+                        pass
 
                 images.append(img_cropped)
 
