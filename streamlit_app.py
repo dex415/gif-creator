@@ -34,7 +34,7 @@ else:
         duration = 1.5
         output_format = "GIF"
     elif preset == "MP4 (Short Reel)":
-    duration = 1.5
+        duration = 1.5
     output_format = "MP4 (video)"
     add_watermark = True
     elif preset == "MP4 (Longer Reel)":
