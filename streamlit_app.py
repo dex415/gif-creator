@@ -8,6 +8,9 @@ from moviepy.editor import ImageSequenceClip
 from datetime import datetime
 from streamlit_sortables import sort_items
 
+# Define early so it is usable
+LOGO_PATH = "logo.png"
+
 st.set_page_config(page_title="🧢 TWNTY-TWO GIF Creator", layout="centered", page_icon="https://twnty-two-assets.s3.amazonaws.com/twnty-two-logo-header.png")
 
 st.markdown("""
@@ -45,8 +48,8 @@ else:
 st.subheader("Filter Options")
 default_watermark = True if preset in ["MP4 (Short Reel)", "MP4 (Longer Reel)", "GIF (Short Reel)"] else False
 add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=default_watermark)
-st.caption(f"Watermark checkbox: {add_watermark} | Preset: {preset} | LOGO_PATH exists: {os.path.exists(LOGO_PATH)}")
-    st.write(f"Watermark enabled: {add_watermark}, Preset: {preset}, Watermark path exists: {os.path.exists(LOGO_PATH)}")
+
+
 if add_watermark:
     if preset == "Custom":
         watermark_size = st.slider("Watermark size (% of image width)", 5, 30, 15)
@@ -69,7 +72,7 @@ fade_last = st.checkbox("Fade out at end of export (MP4 only)")
 fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1, key="fade_duration_slider")
 
 # Define early so we can check its existence
-LOGO_PATH = "logo.png"
+
 
 
 if uploaded_files:
