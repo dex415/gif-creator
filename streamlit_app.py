@@ -38,19 +38,16 @@ else:
         output_format = "MP4 (video)"
 
 
-st.subheader("Filters and Image Edits")
+st.subheader("Filter Options")
 add_watermark = st.checkbox("Add TWNTY-TWO logo watermark", value=True)
 apply_bw = st.checkbox("Apply black & white filter")
 apply_contrast = st.checkbox("Boost contrast")
 apply_blur = st.checkbox("Apply soft blur")
 apply_sepia = st.checkbox("Apply sepia tone")
 repeat_all = st.checkbox("Repeat full animation in export", value=False)
-fade_last = st.checkbox("Fade out at end of export (MP4 only)")
-fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1, key="fade_duration_slider")
+
+# Removed duplicated controls below
 st.subheader("Export Options")
-repeat_all = st.checkbox("Loop animation once in export", value=False)
-fade_last = st.checkbox("Fade out at end of export")
-fade_duration = st.slider("Fade duration (seconds)", 0.5, 3.0, 1.0, step=0.1)
 loop_forever = st.checkbox("Loop forever (GIF only)", value=False)
 
 LOGO_PATH = "logo.png"
