@@ -1,6 +1,5 @@
 streamlit
-Pillow
-imageio
 moviepy
+pillow
+imageio
 numpy
-streamlit-sortables
